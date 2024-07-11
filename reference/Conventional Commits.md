@@ -5,7 +5,12 @@ aliases: #synonyms
 tags:
 ---
 
+# Conventional Commits
+A specification for standardizing commit messages. It provides an easy set of rules for creating an explicit commit history.
+
+## Table of Contents
 - [Conventional Commits](#conventional-commits)
+  - [Table of Contents](#table-of-contents)
   - [Structure](#structure)
   - [Commit Types](#commit-types)
   - [Breaking Changes](#breaking-changes)
@@ -14,10 +19,6 @@ tags:
     - [Commit message with `scope` and `!` to draw attention to breaking change](#commit-message-with-scope-and--to-draw-attention-to-breaking-change)
     - [Commit message with multi-paragraph body and multiple footers](#commit-message-with-multi-paragraph-body-and-multiple-footers)
   - [References](#references)
-
-
-# Conventional Commits
-A specification for standardizing commit messages. It provides an easy set of rules for creating an explicit commit history.
 
 ## Structure
 With conventional conventions, commit messages are structured as follows:
