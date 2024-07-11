@@ -1,8 +1,8 @@
 ---
 foam_template:
-  name: product
-  description: document product information
-  filepath: 'product/$FOAM_TITLE_SAFE.md'
+  name: reference
+  description: information that will useful to reference periodically over time
+  filepath: 'reference/$FOAM_TITLE_SAFE.md'
 ---
 
 ---

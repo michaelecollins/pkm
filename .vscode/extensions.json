@@ -4,10 +4,25 @@
     // Foam
     "foam.foam-vscode",
 
-    // Markdown QOL
+    // Markdown QOL enhancements
     "yzhang.markdown-all-in-one",
 
-    // auto formatting
+    // document formatting
     "esbenp.prettier-vscode",
+
+    // support md footnotes in markdown preview
+    "bierner.markdown-footnotes",
+
+    // emoji md support
+    "bierner.markdown-emoji",
+
+    // emoji autocomplete
+    "bierner.emojisense",
+
+    // excalidraw support
+    "pomdtr.excalidraw-editor",
+
+    // mermaid support
+    "bierner.markdown-mermaid",
   ]
 }
