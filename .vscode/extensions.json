@@ -1,0 +1,13 @@
+{
+  // See http://go.microsoft.com/fwlink/?LinkId=827846 for the documentation about the extensions.json format
+  "recommendations": [
+    // Foam
+    "foam.foam-vscode",
+
+    // Markdown QOL
+    "yzhang.markdown-all-in-one",
+
+    // auto formatting
+    "esbenp.prettier-vscode",
+  ]
+}
