@@ -14,6 +14,7 @@ tags:
     - [Angular \& Typescript](#angular--typescript)
   - [Angular Templates](#angular-templates)
     - [Angular Interpolation](#angular-interpolation)
+      - [Using interpolation](#using-interpolation)
     - [Angular Directives](#angular-directives)
       - [Structural Directives](#structural-directives)
         - [\*ngIf](#ngif)
@@ -61,29 +62,30 @@ tags:
 
 An angular application is primarily built by building components and services.
 
-  1. **Components**: Define the UI.
-     1. Contain HTML and TS
+  1. **Components**: Define the UI and contain HTML and TypeScript.
   2. **Services**: Contain business logic
 
-Within an angular application, there is always a top-level Root component. The application can be routed to another component based on a url and that may subsequently be made from various sub components.
+Within an Angular application, there is always a top-level root component. The application can be routed to other components based on URLs, and those components can be composed of various sub-components.
 
 #### Angular Modules
 
-A way to group components and services so that they can be loaded independently from each other.
+Angular modules group components and services, allowing them to be loaded independently.
 
 Components must be declared within a module before they can be used.
 
 ### Angular & Typescript
 
-Angular uses Typescript by default.
+Angular uses TypeScript by default.
 
 ## Angular Templates
 
 ### Angular Interpolation
 
-THe process of adding expressions into HTML which is then interpreted and rendered the result into the HTML by Angular.
+The process of embedding expressions in HTML, which Angular interprets and renders.
 
-Using interpolation:
+#### Using interpolation
+
+The following interpolation:
 
 ```html
 <h1>2 + 2 = {{2 + 2}}</h1>
@@ -101,7 +103,7 @@ A collection of special operations specific to Angular.
 
 #### Structural Directives
 
-Directives that change the structure of html by adding or removing html elements. They are signified by prepending `*` to their name.
+Directives that change the structure of HTML by adding or removing elements. They are signified by prepending * to their name.
 
 ##### *ngIf
 
@@ -131,13 +133,13 @@ Repeats elements for a certain condition
 
 Brackets:
 
-- Square Brackets bind in the direction from the component to the template.
-- Brackets are used to bind to expressions.
+- Bind in the direction from the component to the template.
+- Used to bind to expressions.
 
 Parenthesis:
 
-- Parenthesis bind in the direction from the template to the component.
-- Parenthesis are used to bind to statements.
+- Bind in the direction from the template to the component.
+- Used to bind to statements.
 
 #### Data Binding
 
@@ -157,7 +159,7 @@ import { Component } from '@angular/core';
     templateUrl: './catalog.component.html',
     styleUrls: ['./catalog.component.css']
 })
-export class Catalog {
+export class CatalogComponent {
     product: IProduct;
 
     constructor() {
@@ -165,14 +167,17 @@ export class Catalog {
             id: 2,
             name: "a product",
             description: "the next big thing"
-        }
+        };
     }
 }
+
 ```
 
 ```html
 <!-- catalog.component.html -->
-<div class="name">{{product.name}}</div> // bind product name to html
+
+<!-- bind product name to HTML -->
+<div class="name">{{ product.name }}</div>
 ```
 
 #### Attribute Binding
@@ -197,7 +202,9 @@ A property can also be bound to the return value of a function in the component.
 
 ```html
 <!-- catalog.component.html -->
-<img [src]="getImageUrl(product)" [alt]="product.name" /> // using attribute binding
+
+ <!-- using attribute binding -->
+<img [src]="getImageUrl(product)" [alt]="product.name" />
 ```
 
 ```typescript
@@ -205,14 +212,14 @@ A property can also be bound to the return value of a function in the component.
 @Component({
     // ...
 })
-export class Catalog {
+export class CatalogComponent {
     product: IProduct;
 
     constructor() {
         // ...
     }
 
-    getImageUrl(product: IProduct) {
+    getImageUrl(product: IProduct): string {
         return '/dir/to/images/' + product.name;
     }
 }
@@ -220,7 +227,7 @@ export class Catalog {
 
 #### Event Binding
 
-To bind to an html event which will update the component, use the `()` syntax. Typically, html events are prefixed with `on`, but in Angular, this is omitted. Instead, it would look something like:
+To bind to an HTML event which will update the component, use the `()` syntax. Typically, HTML events are prefixed with on, but in Angular, this is omitted. Instead, it would look something like:
 
 ```html
 <div class="filters">
@@ -231,7 +238,7 @@ To bind to an html event which will update the component, use the `()` syntax. T
 
 <ul>
     <li class="product-item" *ngFor="let product of getFilteredProducts()">
-        <div class="product-name">{{product.name}}</div>
+        <div class="product-name">{{ product.name }}</div>
     </li>
 </ul>
 ```
@@ -241,14 +248,14 @@ To bind to an html event which will update the component, use the `()` syntax. T
 @Component({
     // ...
 })
-export class Catalog {
+export class CatalogComponent {
     product: IProduct;
     filter: string; // click handler sets filter value
 
     constructor() {
         this.product = {
             // ...
-        }
+        };
     }
 
     getFilteredProducts() {
@@ -261,16 +268,16 @@ export class Catalog {
 
 #### Angular Pipes
 
-A special syntax that easily allow formatting of data in html templates. There are a handful of pipes. Pipes can also accept data as an argument. An example of a built-in pipe is the currency pipe:
+A special syntax that easily allows formatting of data in HTML templates. There are a handful of pipes. Pipes can also accept data as an argument. An example of a built-in pipe is the currency pipe:
 
 ```html
-<div class="price-usd">{{ product.price | currency: }}</div>
+<div class="price-usd">{{ product.price | currency }}</div>
 <div class="price-gbp">{{ product.price | currency:'GBP' }}</div>
 ```
 
 ### Safe Navigation Operator
 
-Helps guard against null in html template. This is done by using the `null conditional operator` like in .net, `?.`.
+Helps guard against null in HTML template. This is done by using the null conditional operator, `?.`.
 
 ```html
 <ul>
@@ -287,7 +294,7 @@ Helps guard against null in html template. This is done by using the `null condi
 You can easily create components by using the Angular CLI:
 
 ```typescript
-ng generate component foo
+`ng generate component foo`
 
 // produces:
 foo.component.css
@@ -336,7 +343,7 @@ export class Foo {
 
 #### Component Lifecycle Hooks
 
-Every component in Angular has a lifecycle. And that lifecycle is defined by a series of events that occur throughout the lifetime of a component. Some occur only once, while other occur multiple times during a component's lifetime.
+Every component in Angular has a lifecycle. This lifecycle is defined by a series of events that occur throughout the lifetime of a component. Some occur only once, while others occur multiple times during a component's lifetime.
 
 | Once | During Change |
 | ---- | ------------- |
@@ -353,8 +360,8 @@ The most common hooks used are:
 
 #### Implementing a Hooks
 
-1. Import the event from angular
-2. Implement the event on the class
+1. Import the event from Angular.
+2. Implement the event on the class.
 
 ```typescript
 import { Component, OnInit } from '@angular/core'; // import event handler
@@ -364,7 +371,7 @@ import { Component, OnInit } from '@angular/core'; // import event handler
     templateUrl: './foo.component.html',
     styleUrls: ['./foo.component.css']
 })
-export class Foo implements OnInit { // implement event handler
+export class FooComponent implements OnInit { // implement event handler
     constructor() {}
 
     ngOnInit(): void { // note: prefixed with `ng`
@@ -375,7 +382,7 @@ export class Foo implements OnInit { // implement event handler
 
 #### Inline Templates and Styles
 
-It is possible to define inline html and css when you have very small components. To do this, pass `template` and `styles` into the component instead of urls for these properties.
+It is possible to define inline HTML and CSS when you have very small components. To do this, pass `template` and `styles` into the component instead of URLs for these properties.
 
 However, this is not typically recommended as it can quickly become unmanageable.
 
@@ -447,10 +454,7 @@ Similar to how you can bind classes to an element, you can also bind styles to a
 <!-- catalog.component.html -->
 <ul class="products">
     <li class="product-item" *ngFor="let product of getProducts()">
-        <app-product-details>
-            <!-- passing product to product details component -->
-            [product]="product"
-        </app-product-details>
+        <app-product-details [product]="product"></app-product-details>
     </li>
 </ul>
 ```
@@ -466,15 +470,15 @@ Similar to how you can bind classes to an element, you can also bind styles to a
 
 ```typescript
 // product-details.component.ts
-import { Component, Input } from 'angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-product-details',
     templateUrl: './product-details.component.html',
-    styleUrls: './product-details.component.css'
+    styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
-    @Input() product: IProduct; // member of data will be injected into.
+    @Input() product!: IProduct; // added '!' to ensure the property is initialized.
 
     addToCart() {
 
@@ -488,18 +492,18 @@ Example: In the product catalog example, each product is represented by a `produ
 
 ```typescript
 // product-details.component.ts
-import { Component, Input, EventEmitter, Output } from 'angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
     selector: 'app-product-details',
     templateUrl: './product-details.component.html',
-    styleUrls: './product-details.component.css'
+    styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
-    @Input() product: IProduct;
-    @Output() buy = new EventEmitter() // register buy event
+    @Input() product!: IProduct;
+    @Output() buy = new EventEmitter<void>(); // register buy event with void type
 
-    buyButtonClicked(product: IProduct) {
+    buyButtonClicked() {
         this.buy.emit(); // raise the event
     }
 }
@@ -509,17 +513,14 @@ export class ProductDetailsComponent {
 <!-- catalog.component.html -->
 <ul class="products">
     <li class="product-item" *ngFor="let product of getProducts()">
-        <app-product-details>
-            [product]="product"
-            (buy)="addToCart(product)" <!-- register event listener-->
-        </app-product-details>
+        <app-product-details [product]="product" (buy)="addToCart(product)"></app-product-details> <!-- register event listener -->
     </li>
 </ul>
 ```
 
 ```typescript
 // catalog.component.ts
-import { Component } from 'angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     // ...
@@ -527,7 +528,7 @@ import { Component } from 'angular/core';
 export class CatalogComponent {
     products: IProduct[];
 
-    addToCart(product: IProduct) { // invoked from component html on (buy)
+    addToCart(product: IProduct) { // invoked from component HTML on (buy)
         // add to cart
     }
 }
